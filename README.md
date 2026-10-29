@@ -2,7 +2,7 @@
 
 GeoFS MXWL Military is an addon that adds basic (for now) military features to the game. Including Missiles, Guns, and Radars. 
 
-This Addon has nothing to do with GMRP or any GeoFS military roleplay community. I'm saying this because recently, Google's AI kept stating that this addon is made to enhance your MRP experience.
+This Addon has nothing to do with GMRP or any GeoFS military roleplay community. Please ignore search engines if they say that
 
 **Current script version 0.0.2**
 
