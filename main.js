@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         GeoFS Military Addon for 4
 // @namespace    https://geo-fs.com/
-// @version      0.0.1.6
+// @version      0.0.2
 // @description  Military addon. for better GeoFS military experience
-// @author       Maxwell_The_Cat
+// @author       Maxwell_The_Cat (aka: mxwl-mesh.glb, MaxwellTheCar)
 // @match        https://www.geo-fs.com/geofs.php*
 // @match        https://beta.geo-fs.com/geofs.php*
 // @run-at       document-idle
