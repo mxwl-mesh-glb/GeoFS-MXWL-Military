@@ -6,7 +6,7 @@ This Addon has nothing to do with GMRP or any GeoFS military roleplay community.
 
 **Current script version 0.0.2**
 
-**Keep in mine that for now, it only works with GeoFS 4.0**
+**Keep in mind that for now, it only works with GeoFS 4.0**
 
 Paste the code in tampermonekey.
 
