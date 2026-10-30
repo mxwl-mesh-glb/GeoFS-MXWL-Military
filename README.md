@@ -4,9 +4,9 @@ GeoFS MXWL Military is an addon that adds basic (for now) military features to t
 
 This Addon has nothing to do with GMRP or any GeoFS military roleplay community. Please ignore search engines if they say that
 
-**Current script version 0.0.2**
+## Current script version 0.0.3
 
-**Keep in mind that for now, it only works with GeoFS 4.0**
+**The script now supports both 3.9 and 4.0**
 
 Paste the code in tampermonekey.
 
