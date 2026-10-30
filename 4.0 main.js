@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GeoFS Military Addon for 4
 // @namespace    https://geo-fs.com/
-// @version      0.0.3
+// @version      0.0.2
 // @description  Military addon. for better GeoFS military experience
 // @author       Maxwell_The_Cat (aka: mxwl-mesh.glb, MaxwellTheCar)
 // @match        https://www.geo-fs.com/geofs.php*
@@ -29,7 +29,7 @@
   function init() {
     console.log('%c[Missile Addon v9.5] Ready.', 'color:lime;font-family:monospace');
 
-    const BASE = 'https://raw.githubusercontent.com/amrsherif2422011-cloud/REALADDONMODELS/main/';
+    const BASE = 'https://raw.githubusercontent.com/mxwl-mesh-glb/REALADDONMODELS/main/';
 
     function lodUrls(name) {
       return [
@@ -176,7 +176,7 @@
 
     function createPylonPrimitive(callback) {
       Cesium.Model.fromGltfAsync({
-        url: 'https://raw.githubusercontent.com/amrsherif2422011-cloud/REALADDONMODELS/main/hardpoints.glb',
+        url: 'https://raw.githubusercontent.com/mxwl-mesh-glb/REALADDONMODELS/main/hardpoints.glb',
         minimumPixelSize: 32,
         maximumScale: 500,
         modelMatrix: Cesium.Matrix4.IDENTITY.clone(),
@@ -325,7 +325,7 @@
     let lastFireTime    = 0;
 
     // ── Audio ─────────────────────────────────────────────────────────────
-    const SOUND_URL = 'https://raw.githubusercontent.com/amrsherif2422011-cloud/missile-launch/main/freesound_community-missile-firing-fl-106655.mp3';
+    const SOUND_URL = 'https://raw.githubusercontent.com/mxwl-mesh-glb/missile-launch/main/freesound_community-missile-firing-fl-106655.mp3';
     let launchAudioBuffer = null;
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
