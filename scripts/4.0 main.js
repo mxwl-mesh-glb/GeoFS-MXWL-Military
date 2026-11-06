@@ -2,7 +2,7 @@
 // @name         GeoFS Military Addon for 4.0
 // @namespace    https://geo-fs.com/
 // @version      0.0.3
-// @description  Military addon. for better GeoFS military experience
+// @description  Military addon. for better GeoFS military.....stuff
 // @author       Maxwell_The_Cat (aka: mxwl-mesh.glb, MaxwellTheCar)
 // @match        https://www.geo-fs.com/geofs.php*
 // @match        https://beta.geo-fs.com/geofs.php*
