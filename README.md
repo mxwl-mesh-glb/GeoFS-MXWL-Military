@@ -20,9 +20,25 @@ Paste the code in tampermonekey.
 
 **ENTER** = FIRE GUNS
 
-
 Spawn in one if these planes (Su-35, F/A-18, rafale, F-16)
 
 Make sure to turn your engines off before selecting missiles.
 
 *more stuff will be added in the future*
+
+## Current Features:
+
+### Missiles:
+
+The current missiles are pretty basic imo. I'm working on improving the physics.
+
+**Current missiles:**
+- AIM-120
+- AIM-9
+- AIM-9C
+- R-27EA
+- R-27R
+- R-27T
+- R-33
+- R-73
+- R-77
