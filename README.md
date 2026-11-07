@@ -2,11 +2,14 @@
 
 <img width="1450" height="639" alt="Screenshot 2026-05-21 133622" src="https://github.com/user-attachments/assets/4a2efe42-fb13-4c55-9830-c3c31685056d" />
 
+
 GeoFS MXWL Military is an addon that adds basic (for now) military features to the game. Including Missiles, Guns, and Radars. 
 
 This Addon has nothing to do with GMRP or any GeoFS military roleplay community. Please ignore search engines if they say that
 
 copy the script in "4.0 main.js" for 4.0 and "3.9 main.js" for 3.9 or "normal"
+
+### Oh and please feel free to open an issue asking for a new feature.
 
 ## Current script version 0.0.3
 
