@@ -56,6 +56,35 @@ The current missiles are pretty basic imo. I'm working on improving the physics.
 
 ~~russian bias~~ ??
 
-These numbers will be changed in the future. they all will have at least 12 slots and some up to 18 in the future
+These numbers will be changed in the future. They all will have at least 12 slots and some up to 18 in the future.
 
-Oh, and sorry for it not supporting other planes like F-14, F-35, and F-22. I was focusing more on Xavier's planes first
+Oh, and sorry for it not supporting other planes like F-14, F-35, and F-22. I was focusing more on Xavier's planes first.
+
+## Radar:
+
+<img width="475" height="542" alt="image" src="https://github.com/user-attachments/assets/08572753-2b51-4104-81a2-a2e5225a7d13" />
+
+**BRA (Bearing, Range, Altitude):**
+
+This is a standard military combat format used to pinpoint a target's location relative to your aircraft.
+*status: WORKS (not visual only)*
+
+**MODE (Radar Mode):**
+
+This displays the current tracking or scanning sub-mode the radar is operating under. Combined with information like expected target speed (knots)
+*status: semi working (needs more work)*
+
+**CHAN (Channel):**
+
+This displays the active data link channel frequency being used to share tactical info with friendly aircraft.
+*status: visual only (for now?)*
+
+**DATA:**
+
+This area shows the custom data transmission settings. (like for example in the image, it's saying 80NM)
+*status: WORKS*
+
+**CLO:**
+
+This represents the relative speed between your aircraft and the target you are tracking. Which basically means the speed you're closing in on the target
+*status: WORKS*
