@@ -47,8 +47,11 @@ The current missiles are pretty basic imo. I'm working on improving the physics.
 **Missiles in the planes:**
 
 "Sukhoi Su-35 Flanker" has **14 slots**
+
 "Boeing F/A-18 (super?) Hornet" has **8 slots**
+
 "General Dynamics F-16 Fighting Falcon" has **6 slots**
+
 "Dassault Rafale" has **6 slots**
 
 ~~russian bias~~ ??
