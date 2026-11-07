@@ -33,6 +33,7 @@ Make sure to turn your engines off before selecting missiles.
 The current missiles are pretty basic imo. I'm working on improving the physics.
 
 **Current missiles:**
+
 - AIM-120
 - AIM-9
 - AIM-9C
@@ -42,3 +43,16 @@ The current missiles are pretty basic imo. I'm working on improving the physics.
 - R-33
 - R-73
 - R-77
+
+**Missiles in the planes:**
+
+"Sukhoi Su-35 Flanker" has **14 slots**
+"Boeing F/A-18 (super?) Hornet" has **8 slots**
+"General Dynamics F-16 Fighting Falcon" has **6 slots**
+"Dassault Rafale" has **6 slots**
+
+~~russian bias~~ ??
+
+These numbers will be changed in the future. they all will have at least 12 slots and some up to 18 in the future
+
+Oh, and sorry for it not supporting other planes like F-14, F-35, and F-22. I was focusing more on Xavier's planes first
