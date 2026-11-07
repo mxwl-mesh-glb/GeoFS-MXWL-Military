@@ -67,21 +67,25 @@ Oh, and sorry for it not supporting other planes like F-14, F-35, and F-22. I wa
 **BRA (Bearing, Range, Altitude):**
 
 This is a standard military combat format used to pinpoint a target's location relative to your aircraft.
+
 *status: WORKS (not visual only)*
 
 **MODE (Radar Mode):**
 
 This displays the current tracking or scanning sub-mode the radar is operating under. Combined with information like expected target speed (knots)
+
 *status: semi working (needs more work)*
 
 **CHAN (Channel):**
 
 This displays the active data link channel frequency being used to share tactical info with friendly aircraft.
+
 *status: visual only (for now?)*
 
 **DATA:**
 
 This area shows the custom data transmission settings. (like for example in the image, it's saying 80NM)
+
 *status: WORKS*
 
 **CLO:**
