@@ -60,7 +60,7 @@ These numbers will be changed in the future. They all will have at least 12 slot
 
 Oh, and sorry for it not supporting other planes like F-14, F-35, and F-22. I was focusing more on Xavier's planes first.
 
-## Radar:
+### Radar:
 
 <img width="475" height="542" alt="image" src="https://github.com/user-attachments/assets/08572753-2b51-4104-81a2-a2e5225a7d13" />
 
