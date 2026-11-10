@@ -112,4 +112,6 @@ This represents the relative speed between your aircraft and the target you are 
 
 ### Deaths
 
+### ~~Nukes~~ (just waiting for a heavy bomber plane to be added in geofs)
+
 
