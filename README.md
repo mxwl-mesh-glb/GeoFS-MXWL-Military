@@ -23,7 +23,7 @@ Paste the code in tampermonekey.
 
 **SHIFT** = FIRE MISSILES (war)
 
-**ENTER** = FIRE GUNS (more war)
+**ENTER** = FIRE GUNS (sprinkle of war)
 
 Spawn in one if these planes (Su-35, F/A-18, rafale, F-16)
 
