@@ -9,7 +9,7 @@ This Addon has nothing to do with GMRP or any GeoFS military roleplay community.
 
 copy the script in "4.0 main.js" for 4.0 and "3.9 main.js" for 3.9 or "normal"
 
-### Oh and please feel free to open an issue asking for a new feature.
+### Please feel free to open an issue asking for new features.
 
 ## Current script version 0.0.3
 
@@ -19,15 +19,15 @@ Paste the code in tampermonekey.
 
 **CONTROLS**
 
-**L** = WEAPON SYSTEM ON / OFF
+**L** = WEAPON SYSTEM ON / OFF (war)
 
-**SHIFT** = FIRE MISSILES
+**SHIFT** = FIRE MISSILES (war)
 
-**ENTER** = FIRE GUNS
+**ENTER** = FIRE GUNS (more war)
 
 Spawn in one if these planes (Su-35, F/A-18, rafale, F-16)
 
-Make sure to turn your engines off before selecting missiles.
+Make sure to turn your engines off before arming the plane
 
 *more stuff will be added in the future*
 
@@ -59,7 +59,7 @@ The current missiles are pretty basic imo. I'm working on improving the physics.
 
 "Dassault Rafale" has **6 slots**
 
-~~russian bias~~ ??
+~~russian bias? no. it's normal. at least that's what i was told~~
 
 These numbers will be changed in the future. They all will have at least 12 slots and some up to 18 in the future.
 
@@ -73,19 +73,19 @@ Oh, and sorry for it not supporting other planes like F-14, F-35, and F-22. I wa
 
 This is a standard military combat format used to pinpoint a target's location relative to your aircraft.
 
-*status: WORKS (not visual only)*
+*status: WORKS*
 
 **MODE (Radar Mode):**
 
 This displays the current tracking or scanning sub-mode the radar is operating under. Combined with information like expected target speed (knots)
 
-*status: semi working (needs more work)*
+*status: semi working*
 
 **CHAN (Channel):**
 
 This displays the active data link channel frequency being used to share tactical info with friendly aircraft.
 
-*status: visual only (for now?)*
+*status: visual*
 
 **DATA:**
 
