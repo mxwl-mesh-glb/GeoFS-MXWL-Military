@@ -97,3 +97,21 @@ This area shows the custom data transmission settings. (like for example in the 
 
 This represents the relative speed between your aircraft and the target you are tracking. Which basically means the speed you're closing in on the target
 *status: WORKS*
+
+## Planned features:
+
+### Bombs (laser guided and dumb ones)
+
+They can replace missile pylons. Up to 3 bombs per pylon
+
+### Flares / Chaff
+
+For some reason I forgot to add them. i'm stupid
+
+### ~~More NATO missiles~~ *i mean* More missiles.....
+
+"You can never have enough missiles"
+
+### Better guns
+
+These current ones are lame
