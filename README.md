@@ -104,14 +104,12 @@ This represents the relative speed between your aircraft and the target you are 
 
 ### Flares / Chaff
 
-### ~~More NATO missiles~~ *i mean* More missiles.....
+### More missile options
 
 ### Better guns
 
 ### Eject seat
 
 ### Deaths
-
-### ~~Nukes~~ (just waiting for a heavy bomber plane to be added in geofs)
 
 
