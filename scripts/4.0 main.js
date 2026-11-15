@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GeoFS Military Addon for 4.0
 // @namespace    https://geo-fs.com/
-// @version      0.0.4
+// @version      0.0.3
 // @description  Military addon. for better GeoFS military.....stuff
 // @author       Maxwell_The_Cat (aka: mxwl-mesh.glb, MaxwellTheCar)
 // @match        https://www.geo-fs.com/geofs.php*
@@ -565,200 +565,155 @@
     // ── UI: HUD ───────────────────────────────────────────────────────────
     const hud = document.createElement('div');
     Object.assign(hud.style, {
-  position: 'fixed', top: '16px', right: '16px',
-  background: 'rgba(0,0,0,0.88)', border: '1px solid #00ff41',
-  borderRadius: '6px', zIndex: '999999', pointerEvents: 'none',
-  display: 'none', width: '200px', overflow: 'hidden',
-  fontFamily: '"Courier New", monospace',
-});
+      position: 'fixed', top: '80px', right: '16px',
+      background: 'rgba(0,0,0,0.95)', border: '1px solid #00ff41',
+      color: '#00ff41',
+      fontFamily: '"OCR A Extended", "Lucida Console", monospace',
+      fontSize: '12px', padding: '10px 14px',
+      zIndex: '999999', pointerEvents: 'none',
+      lineHeight: '1.7', display: 'none', minWidth: '220px',
+      textShadow: '0 0 6px rgba(0,255,65,0.4)',
+    });
     document.body.appendChild(hud);
 
     // ── UI: ARM button ────────────────────────────────────────────────────
     const armBtn = document.createElement('button');
     Object.assign(armBtn.style, {
-  position: 'fixed', top: '80px', right: '16px',
-  background: 'rgba(0,0,0,0.88)', border: '1px solid #00ff41',
-  color: '#00ff41', fontFamily: '"Courier New", monospace',
-  fontSize: '10px', fontWeight: 'bold',
-  padding: '6px 14px', zIndex: '999999', cursor: 'pointer',
-  letterSpacing: '2px', display: 'none', borderRadius: '4px',
-});
+      position: 'fixed', top: '80px', right: '16px',
+      background: '#001a00', border: '2px solid #00ff41',
+      color: '#00ff41',
+      fontFamily: '"OCR A Extended", "Lucida Console", monospace',
+      fontSize: '14px', fontWeight: 'bold',
+      padding: '10px 24px', zIndex: '999999', cursor: 'pointer',
+      letterSpacing: '2px', display: 'none',
+      textShadow: '0 0 8px rgba(0,255,65,0.6)',
+      boxShadow: '0 0 10px rgba(0,255,65,0.2)',
+    });
     armBtn.textContent = '◈ ARM LOADOUT';
     document.body.appendChild(armBtn);
 
     // ── UI: Loadout panel ─────────────────────────────────────────────────
+    const armPanel = document.createElement('div');
     Object.assign(armPanel.style, {
-  position: 'fixed', top: '80px', right: '16px',
-  background: 'rgba(0,0,0,0.92)', border: '1px solid #00ff41',
-  color: '#00ff41', fontFamily: '"Courier New", monospace',
-  fontSize: '12px', padding: '0',
-  zIndex: '999999', display: 'none', width: '260px',
-  borderRadius: '6px', overflow: 'hidden',
-});
+      position: 'fixed', top: '80px', right: '16px',
+      background: 'rgba(0,0,0,0.95)', border: '1px solid #00ff41',
+      color: '#00ff41',
+      fontFamily: '"OCR A Extended", "Lucida Console", monospace',
+      fontSize: '12px', padding: '12px 16px',
+      zIndex: '999999', display: 'none', minWidth: '280px',
+      textShadow: '0 0 6px rgba(0,255,65,0.4)',
+    });
     document.body.appendChild(armPanel);
 
     function buildArmPanel() {
-  const cfg = getHPConfig();
-  if (!cfg) {
-    armPanel.innerHTML =
-      `<div style="padding:12px;color:#ff4444;font-size:11px">No hardpoint config for aircraft ID: <b>${getAircraftId()}</b></div>
-       <div style="padding:0 12px 12px"><button id="ls-close" style="background:#001a00;border:1px solid #555;color:#555;
-         font-size:11px;padding:5px 14px;cursor:pointer;border-radius:4px;font-family:inherit">✕ CLOSE</button></div>`;
-    document.getElementById('ls-close').addEventListener('click', () => { armPanel.style.display = 'none'; });
-    return;
-  }
-  const maxM = cfg.maxMissiles;
-  const maxT = cfg.maxTypes;
-  const used = totalMissiles();
-  const pct  = Math.round(used / maxM * 100);
-  const barColor = used >= maxM ? '#ff4444' : used > maxM * 0.7 ? '#ff8800' : '#00ff41';
+      const cfg  = getHPConfig();
+      if (!cfg) return;
+      const maxM = cfg.maxMissiles;
+      const maxT = cfg.maxTypes;
+      const used = totalMissiles();
 
-  let rowsHTML = loadout.map((slot, si) => {
-    const counterClass = slot.counter === 'chaff' ? 'chaff' : 'flare';
-    const counterLabel = slot.counter === 'chaff' ? 'CHAFF' : 'FLARE';
-    const counterStyle = counterClass === 'chaff'
-      ? 'background:rgba(100,180,255,0.1);color:#66aaff;border:1px solid rgba(100,180,255,0.3)'
-      : 'background:rgba(255,100,0,0.15);color:#ff8800;border:1px solid rgba(255,100,0,0.3)';
-    return `
-      <div style="display:flex;align-items:center;gap:7px;padding:6px 8px;
-        background:rgba(0,255,65,0.04);border:1px solid rgba(0,255,65,0.2);border-radius:4px">
-        <select id="ls-name-${si}" style="background:#001a00;border:1px solid rgba(0,255,65,0.4);
-          color:#00ff41;font-size:10px;padding:3px 4px;border-radius:3px;flex:1;font-family:inherit">
-          ${MISSILE_DEFS.map(m => `<option value="${m.name}" ${m.name === slot.name ? 'selected' : ''}>${m.name}</option>`).join('')}
-        </select>
-        <span style="font-size:8px;padding:2px 5px;border-radius:3px;letter-spacing:1px;${counterStyle}">${counterLabel}</span>
-        <div style="display:flex;align-items:center;gap:3px">
-          <button id="ls-dec-${si}" style="width:20px;height:20px;background:rgba(0,255,65,0.08);
-            border:1px solid rgba(0,255,65,0.3);border-radius:3px;color:#00ff41;font-size:13px;
-            cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit">−</button>
-          <input id="ls-cnt-${si}" type="number" min="0" max="${maxM}" value="${slot.count}"
-            style="width:36px;background:#001a00;border:1px solid rgba(0,255,65,0.4);color:#00ff41;
-            font-size:11px;padding:2px;text-align:center;border-radius:3px;font-family:inherit">
-          <button id="ls-inc-${si}" style="width:20px;height:20px;background:rgba(0,255,65,0.08);
-            border:1px solid rgba(0,255,65,0.3);border-radius:3px;color:#00ff41;font-size:13px;
-            cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit">+</button>
-        </div>
-        <button id="ls-del-${si}" style="width:20px;height:20px;background:rgba(255,50,50,0.08);
-          border:1px solid rgba(255,50,50,0.3);border-radius:3px;color:#ff4444;font-size:10px;
-          cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:inherit">✕</button>
-      </div>`;
-  }).join('');
+      let html = `<div style="margin-bottom:10px;letter-spacing:1px;font-size:13px">◈ LOADOUT — ${used}/${maxM} | MAX ${maxT} TYPES</div>`;
 
-  armPanel.innerHTML = `
-    <div style="background:rgba(0,255,65,0.1);border-bottom:1px solid rgba(0,255,65,0.4);
-      padding:7px 12px;display:flex;justify-content:space-between;align-items:center">
-      <span style="font-size:10px;letter-spacing:2px;color:#00ff41">◈ LOADOUT</span>
-      <span style="font-size:9px;padding:2px 7px;background:rgba(0,255,65,0.1);
-        border:1px solid rgba(0,255,65,0.3);border-radius:10px;color:#00cc33;letter-spacing:1px"
-        id="ls-cappill">${used} / ${maxM}</span>
-    </div>
+      loadout.forEach((slot, si) => {
+        html += `<div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">`;
+        html += `<select id="ls-name-${si}" style="background:#001a00;border:1px solid #00ff41;color:#00ff41;font-size:11px;padding:3px;flex:1">`;
+        MISSILE_DEFS.forEach(m => {
+          html += `<option value="${m.name}" ${m.name === slot.name ? 'selected' : ''}>${m.name}</option>`;
+        });
+        html += `</select>`;
+        html += `<input id="ls-cnt-${si}" type="number" min="0" max="${maxM}" value="${slot.count}"
+          style="width:44px;background:#001a00;border:1px solid #00ff41;color:#00ff41;font-size:11px;padding:3px;text-align:center">`;
+        html += `<button id="ls-del-${si}" style="background:#001a00;border:1px solid #ff4444;color:#ff4444;font-size:10px;padding:2px 8px;cursor:pointer">✕</button>`;
+        html += `</div>`;
+      });
 
-    <div style="padding:7px 12px 4px">
-      <div style="display:flex;justify-content:space-between;font-size:8px;
-        color:#3a7a50;letter-spacing:1px;margin-bottom:4px">
-        <span>CAPACITY</span><span>MAX ${maxT} TYPES</span>
-      </div>
-      <div style="height:4px;background:rgba(0,255,65,0.1);border-radius:2px;overflow:hidden">
-        <div id="ls-capbar" style="height:100%;background:${barColor};border-radius:2px;
-          transition:width 0.2s;width:${pct}%"></div>
-      </div>
-    </div>
+      if (loadout.length < maxT) {
+        html += `<button id="ls-add" style="background:#001a00;border:1px solid #00ff41;color:#00ff41;font-size:10px;padding:3px 10px;cursor:pointer;margin-bottom:8px">+ ADD TYPE</button>`;
+      }
 
-    <div style="padding:6px 12px;display:flex;flex-direction:column;gap:6px">
-      ${rowsHTML}
-    </div>
+      html += `<div style="display:flex;gap:8px;margin-top:8px">`;
+      html += `<button id="ls-confirm" style="background:#003300;border:1px solid #00ff41;color:#00ff41;font-size:12px;padding:5px 16px;cursor:pointer;letter-spacing:1px;flex:1">CONFIRM</button>`;
+      html += `<button id="ls-close" style="background:#001a00;border:1px solid #555;color:#555;font-size:12px;padding:5px 16px;cursor:pointer">✕</button>`;
+      html += `</div>`;
+      html += `<div id="ls-err" style="color:#ff4444;font-size:10px;margin-top:6px;display:none"></div>`;
 
-    <div style="padding:8px 12px;border-top:1px solid rgba(0,255,65,0.15);display:flex;gap:7px">
-      ${loadout.length < maxT
-        ? `<button id="ls-add" style="padding:6px 10px;background:rgba(0,255,65,0.05);
-            border:1px solid rgba(0,255,65,0.3);border-radius:4px;color:#3a9a50;
-            font-family:inherit;font-size:10px;cursor:pointer;letter-spacing:1px">+ TYPE</button>`
-        : ''}
-      <button id="ls-confirm" style="flex:1;padding:7px;background:rgba(0,100,0,0.5);
-        border:1px solid #00ff41;border-radius:4px;color:#00ff41;font-family:inherit;
-        font-size:11px;letter-spacing:2px;cursor:pointer">✔ CONFIRM</button>
-      <button id="ls-close" style="padding:7px 10px;background:rgba(0,0,0,0.3);
-        border:1px solid rgba(80,80,80,0.5);border-radius:4px;color:#555;
-        font-family:inherit;font-size:11px;cursor:pointer">✕</button>
-    </div>
-    <div id="ls-err" style="color:#ff4444;font-size:10px;padding:0 12px 8px;display:none"></div>`;
+      armPanel.innerHTML = html;
 
-  function refreshCapUI() {
-    const t2 = loadout.reduce((s,sl) => {
-      const si2 = loadout.indexOf(sl);
-      return s + (parseInt(document.getElementById(`ls-cnt-${si2}`)?.value) || 0);
-    }, 0);
-    const p2 = Math.round(t2 / maxM * 100);
-    const bc2 = t2 >= maxM ? '#ff4444' : t2 > maxM * 0.7 ? '#ff8800' : '#00ff41';
-    const bar = document.getElementById('ls-capbar');
-    const pill = document.getElementById('ls-cappill');
-    if (bar)  { bar.style.width = p2 + '%'; bar.style.background = bc2; }
-    if (pill) { pill.textContent = t2 + ' / ' + maxM; pill.style.color = bc2; }
-  }
+      loadout.forEach((_, si) => {
+        document.getElementById(`ls-del-${si}`).addEventListener('click', () => {
+          loadout.splice(si, 1);
+          activeSlotIdx = Math.min(activeSlotIdx, loadout.length - 1);
+          buildArmPanel();
+        });
+      });
 
-  loadout.forEach((_, si) => {
-    document.getElementById(`ls-del-${si}`).addEventListener('click', () => {
-      loadout.splice(si, 1);
-      activeSlotIdx = Math.min(activeSlotIdx, loadout.length - 1);
-      buildArmPanel();
-    });
-    document.getElementById(`ls-dec-${si}`).addEventListener('click', () => {
-      const inp = document.getElementById(`ls-cnt-${si}`);
-      inp.value = Math.max(0, parseInt(inp.value) - 1);
-      refreshCapUI();
-    });
-    document.getElementById(`ls-inc-${si}`).addEventListener('click', () => {
-      const inp = document.getElementById(`ls-cnt-${si}`);
-      inp.value = Math.min(maxM, parseInt(inp.value) + 1);
-      refreshCapUI();
-    });
-    document.getElementById(`ls-cnt-${si}`).addEventListener('input', refreshCapUI);
-    document.getElementById(`ls-name-${si}`).addEventListener('change', () => {
-      const name = document.getElementById(`ls-name-${si}`).value;
-      const def  = MISSILE_DEFS.find(m => m.name === name);
-      if (def) loadout[si] = { ...def, count: parseInt(document.getElementById(`ls-cnt-${si}`).value) || 0 };
-      buildArmPanel();
-    });
-  });
+      const addBtn = document.getElementById('ls-add');
+      if (addBtn) addBtn.addEventListener('click', () => {
+        if (loadout.length < maxT) {
+          const taken = loadout.map(s => s.name);
+          const next  = MISSILE_DEFS.find(m => !taken.includes(m.name));
+          if (next) { loadout.push({ ...next, count: 0 }); buildArmPanel(); }
+        }
+      });
 
-  const addBtn = document.getElementById('ls-add');
-  if (addBtn) addBtn.addEventListener('click', () => {
-    if (loadout.length < maxT) {
-      const taken = loadout.map(s => s.name);
-      const next  = MISSILE_DEFS.find(m => !taken.includes(m.name));
-      if (next) { loadout.push({ ...next, count: 0 }); buildArmPanel(); }
+      document.getElementById('ls-confirm').addEventListener('click', () => {
+        const err = document.getElementById('ls-err');
+        const newLoadout = [];
+        let total = 0, valid = true;
+
+        loadout.forEach((_, si) => {
+          const name  = document.getElementById(`ls-name-${si}`).value;
+          const count = parseInt(document.getElementById(`ls-cnt-${si}`).value) || 0;
+          const def   = MISSILE_DEFS.find(m => m.name === name);
+          if (def) { newLoadout.push({ ...def, count }); total += count; }
+        });
+
+        const types = newLoadout.filter(s => s.count > 0).length;
+        if (total > maxM)      { err.textContent = `MAX ${maxM} MISSILES`; err.style.display = 'block'; valid = false; }
+        else if (types > maxT) { err.textContent = `MAX ${maxT} TYPES`;    err.style.display = 'block'; valid = false; }
+        else if (total === 0)  { err.textContent = 'NO MISSILES LOADED';   err.style.display = 'block'; valid = false; }
+
+        if (valid) {
+          loadout = newLoadout.filter(s => s.count > 0);
+          activeSlotIdx = 0;
+          activeMissile = loadout[0] || null;
+          rebuildHardpointModels();
+          updateHUD();
+          armPanel.style.display = 'none';
+          showNotif('✔ LOADOUT CONFIRMED', '#00ff41');
+        }
+      });
+
+      document.getElementById('ls-close').addEventListener('click', () => {
+        armPanel.style.display = 'none';
+      });
     }
-  });
 
-  document.getElementById('ls-confirm').addEventListener('click', () => {
-    const err = document.getElementById('ls-err');
-    const newLoadout = [];
-    let total = 0, valid = true;
-    loadout.forEach((_, si) => {
-      const name  = document.getElementById(`ls-name-${si}`).value;
-      const count = parseInt(document.getElementById(`ls-cnt-${si}`).value) || 0;
-      const def   = MISSILE_DEFS.find(m => m.name === name);
-      if (def) { newLoadout.push({ ...def, count }); total += count; }
+    armBtn.addEventListener('click', () => {
+      buildArmPanel();
+      armPanel.style.display = armPanel.style.display === 'none' ? 'block' : 'none';
     });
-    const types = newLoadout.filter(s => s.count > 0).length;
-    if      (total > maxM) { err.textContent = `MAX ${maxM} MISSILES`; err.style.display = 'block'; valid = false; }
-    else if (types > maxT) { err.textContent = `MAX ${maxT} TYPES`;    err.style.display = 'block'; valid = false; }
-    else if (total === 0)  { err.textContent = 'NO MISSILES LOADED';   err.style.display = 'block'; valid = false; }
-    if (valid) {
-      loadout = newLoadout.filter(s => s.count > 0);
-      activeSlotIdx = 0;
-      activeMissile = loadout[0] || null;
-      rebuildHardpointModels();
-      updateHUD();
-      armPanel.style.display = 'none';
-      showNotif('✔ LOADOUT CONFIRMED', '#00ff41');
-    }
-  });
 
-  document.getElementById('ls-close').addEventListener('click', () => {
-    armPanel.style.display = 'none';
-  });
-}
+    setInterval(() => {
+      const ac = geofs.aircraft.instance;
+      const onGround = !ac.airborne && ac.groundContact;
+      const stopped  = ac.groundSpeed < 1;
+      const show = onGround && stopped;
+
+      if (show) {
+        const hudBottom = hud.style.display !== 'none'
+          ? hud.getBoundingClientRect().bottom + 8
+          : 80;
+        armBtn.style.top     = hudBottom + 'px';
+        armBtn.style.display = 'block';
+        if (armPanel.style.display === 'block') {
+          armPanel.style.top = (hudBottom + armBtn.offsetHeight + 8) + 'px';
+        }
+      } else {
+        armBtn.style.display   = 'none';
+        armPanel.style.display = 'none';
+      }
+    }, 300);
 
     // ── UI: Target Destroyed ──────────────────────────────────────────────
     function showTargetDestroyed() {
@@ -815,86 +770,37 @@
     }
 
     function updateHUD() {
-  if (!armed) { hud.style.display = 'none'; return; }
-  hud.style.display = 'block';
-  const m   = activeMissile || getNextMissile();
-  const now = Date.now();
-  const cd  = Math.max(0, Math.ceil((lastFireTime + FIRE_COOLDOWN - now) / 1000));
-  const myLLA = geofs.aircraft.instance.llaLocation;
-  let nearby = 0;
-  Object.entries(multiplayer.users || {}).forEach(([id, u]) => {
-    if (!u || !u.referencePoint || !u.referencePoint.lla) return;
-    const lla = u.referencePoint.lla;
-    if (lla[0] && haversineM(myLLA[0], myLLA[1], lla[0], lla[1]) <= RANGE_M) nearby++;
-  });
-  const mach = (getTrueSpeed() / 340.3).toFixed(2);
+      if (!armed) { hud.style.display = 'none'; return; }
+      hud.style.display = 'block';
+      const m     = activeMissile || getNextMissile();
+      const now   = Date.now();
+      const cd    = Math.max(0, Math.ceil((lastFireTime + FIRE_COOLDOWN - now) / 1000));
+      const myLLA = geofs.aircraft.instance.llaLocation;
+      let nearby  = 0;
+      Object.entries(ui.playerMarkers || {}).forEach(([id, mk]) => {
+        if (!mk || !mk._marker) return;
+        const lla = getPlayerLLA(mk, id);
+        if (lla && haversineM(myLLA[0], myLLA[1], lla.lat, lla.lon) <= RANGE_M) nearby++;
+      });
 
-  const slotsHTML = loadout.map((s, i) => {
-    const isActive = i === activeSlotIdx;
-    const counterClass = s.counter === 'chaff' ? 'chaff' : 'flare';
-    const counterLabel = s.counter === 'chaff' ? 'CHAFF' : 'FLARE';
-    return `
-      <div style="display:flex;align-items:center;gap:7px;padding:5px 7px;
-        border-radius:4px;border:1px solid ${isActive ? 'rgba(0,255,65,0.4)' : 'transparent'};
-        background:${isActive ? 'rgba(0,255,65,0.08)' : 'transparent'}">
-        <span style="font-size:9px;color:#00ff41;width:8px">${isActive ? '▶' : ''}</span>
-        <span style="font-size:11px;font-weight:bold;flex:1;color:${isActive ? '#00ff41' : '#3a9a50'}">${s.name}</span>
-        <span style="font-size:8px;padding:1px 5px;border-radius:3px;letter-spacing:1px;
-          background:${counterClass === 'chaff' ? 'rgba(100,180,255,0.1)' : 'rgba(255,100,0,0.15)'};
-          color:${counterClass === 'chaff' ? '#66aaff' : '#ff8800'};
-          border:1px solid ${counterClass === 'chaff' ? 'rgba(100,180,255,0.3)' : 'rgba(255,100,0,0.3)'}">
-          ${counterLabel}</span>
-        <span style="font-size:11px;color:${isActive ? '#00ff41' : '#3a9a50'};min-width:20px;text-align:right">×${s.count}</span>
-      </div>`;
-  }).join('');
+      const loadoutStr = loadout.map((s, i) =>
+        i === activeSlotIdx
+          ? `<b style="color:#fff">▶${s.name}×${s.count}</b>`
+          : `<span style="color:#00aa30">${s.name}×${s.count}</span>`
+      ).join(' ');
 
-  const lockColor = lockedPlayer ? '#ff4444' : '#555';
-  const lockDotBg = lockedPlayer ? '#ff3333' : 'transparent';
-  const lockDotBorder = lockedPlayer ? 'none' : '1px solid #555';
-  const lockText = lockedPlayer ? `LOCKED: ${lockedPlayer.callsign}` : 'SCANNING...';
-
-  hud.innerHTML = `
-    <div style="background:rgba(0,255,65,0.12);border-bottom:1px solid #00ff41;
-      padding:5px 10px;display:flex;justify-content:space-between;align-items:center">
-      <span style="font-size:10px;letter-spacing:2px;color:#00ff41">◈ WPNSYS</span>
-      <span style="font-size:9px;color:#00ff41;letter-spacing:1px">ARMED</span>
-    </div>
-
-    <div style="padding:6px 10px;border-bottom:1px solid rgba(0,255,65,0.2);
-      display:flex;align-items:center;gap:6px">
-      <div style="width:7px;height:7px;border-radius:50%;flex-shrink:0;
-        background:${lockDotBg};border:${lockDotBorder}"></div>
-      <span style="font-size:10px;letter-spacing:1px;color:${lockColor}">${lockText}</span>
-    </div>
-
-    <div style="padding:8px 10px;display:flex;flex-direction:column;gap:5px">
-      ${slotsHTML}
-    </div>
-
-    <div style="padding:6px 10px;border-top:1px solid rgba(0,255,65,0.15);
-      display:grid;grid-template-columns:1fr 1fr;gap:2px 0">
-      <span style="font-size:8px;color:#3a7a50;letter-spacing:1px">NEARBY</span>
-      <span style="font-size:9px;color:#00cc33">${nearby} (&lt;${RANGE_M/1000}km)</span>
-      <span style="font-size:8px;color:#3a7a50;letter-spacing:1px">COOLDOWN</span>
-      <span style="font-size:9px;color:${cd > 0 ? '#ff8800' : '#00cc33'}">${cd > 0 ? cd + 's' : '—'}</span>
-      <span style="font-size:8px;color:#3a7a50;letter-spacing:1px">TOTAL</span>
-      <span style="font-size:9px;color:#00cc33">${totalMissiles()} msls</span>
-      <span style="font-size:8px;color:#3a7a50;letter-spacing:1px">MACH</span>
-      <span style="font-size:9px;color:#00cc33">${mach}</span>
-    </div>
-
-    <div style="padding:5px 10px;border-top:1px solid rgba(0,255,65,0.15);
-      display:flex;gap:5px;flex-wrap:wrap">
-      <span style="font-size:8px;padding:2px 5px;background:rgba(0,255,65,0.08);
-        border:1px solid rgba(0,255,65,0.25);border-radius:3px;color:#3a9a50;letter-spacing:.5px">L disarm</span>
-      <span style="font-size:8px;padding:2px 5px;background:rgba(0,255,65,0.08);
-        border:1px solid rgba(0,255,65,0.25);border-radius:3px;color:#3a9a50;letter-spacing:.5px">Q cycle</span>
-      <span style="font-size:8px;padding:2px 5px;background:rgba(0,255,65,0.08);
-        border:1px solid rgba(0,255,65,0.25);border-radius:3px;color:#3a9a50;letter-spacing:.5px">SHF fire</span>
-      <span style="font-size:8px;padding:2px 5px;background:rgba(0,255,65,0.08);
-        border:1px solid rgba(0,255,65,0.25);border-radius:3px;color:#3a9a50;letter-spacing:.5px">ENT guns</span>
-    </div>`;
-}
+      hud.innerHTML =
+        `<b>◈ WEAPON SYSTEM</b><br>` +
+        `Missile : <b>${m ? m.name : 'NONE'}</b><br>` +
+        `Counter : <b>${m ? m.counter.toUpperCase() : '--'}</b><br>` +
+        `Nearby  : <b>${nearby} (&lt;${RANGE_M/1000}km)</b><br>` +
+        `<span style="font-size:10px">${loadoutStr}</span><br>` +
+        (cd > 0 ? `Cooldown: <b style="color:orange">${cd}s</b><br>` : '') +
+        (lockedPlayer
+          ? `Lock    : <b style="color:red">● ${lockedPlayer.callsign}</b>`
+          : `Lock    : <span style="color:#555">aim at nearby plane</span>`) +
+        `<br><span style="color:#555">[L] disarm [Q] cycle [SHIFT] missile [ENTER] guns</span>`;
+    }
 
     function showNotif(text, color) {
       const n = document.createElement('div');
