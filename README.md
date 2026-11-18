@@ -35,6 +35,8 @@ Make sure to turn your engines off before arming the plane
 
 ### Missiles:
 
+<img width="1450" height="639" alt="Screenshot 2026-05-21 133622" src="https://github.com/user-attachments/assets/4a2efe42-fb13-4c55-9830-c3c31685056d" />
+
 The current missiles are pretty basic imo. I'm working on improving the physics.
 
 **Current missiles:**
@@ -64,8 +66,6 @@ The current missiles are pretty basic imo. I'm working on improving the physics.
 These numbers will be changed in the future. They all will have at least 12 slots and some up to 18 in the future.
 
 And sorry for it not supporting other planes like F-14, F-35, and F-22. I was focusing more on Xavier's planes first.
-
-<img width="1450" height="639" alt="Screenshot 2026-05-21 133622" src="https://github.com/user-attachments/assets/4a2efe42-fb13-4c55-9830-c3c31685056d" />
 
 ### Radar:
 
