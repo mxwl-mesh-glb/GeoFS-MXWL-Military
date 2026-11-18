@@ -25,7 +25,7 @@ Paste the code in tampermonekey.
 
 **SHIFT** = FIRE MISSILES (war)
 
-**ENTER** = FIRE GUNS (sprinkle of war)
+**ENTER** = FIRE GUNS (more war)
 
 Spawn in one if these planes (Su-35, F/A-18, rafale, F-16)
 
@@ -65,7 +65,7 @@ The current missiles are pretty basic imo. I'm working on improving the physics.
 
 These numbers will be changed in the future. They all will have at least 12 slots and some up to 18 in the future.
 
-Oh, and sorry for it not supporting other planes like F-14, F-35, and F-22. I was focusing more on Xavier's planes first.
+And sorry for it not supporting other planes like F-14, F-35, and F-22. I was focusing more on Xavier's planes first.
 
 ### Radar:
 
@@ -113,5 +113,3 @@ This represents the relative speed between your aircraft and the target you are 
 ### Eject seat
 
 ### Deaths
-
-
