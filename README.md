@@ -1,4 +1,4 @@
-# GeoFS MXWL Military
+# GeoFS MXWL Military (Formerly "GeoFS Military Addon")
 
 <img width="1538" height="752" alt="Screenshot 2026-11-15 232004" src="https://github.com/user-attachments/assets/bd2a3b3b-b348-4821-81f2-7fd2b54a7c41" />
 
