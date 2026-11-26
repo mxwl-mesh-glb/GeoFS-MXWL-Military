@@ -3,7 +3,7 @@
 // @namespace    https://geo-fs.com/
 // @version      0.0.3
 // @description  Military addon. for better GeoFS military.....stuff
-// @author       Maxwell_The_Cat (aka: mxwl-mesh.glb, MaxwellTheCar)
+// @author       mxwl-mesh (MaxwellTheCat, mxwl-mesh-glb(or mxwl-mesh.glb)
 // @match        https://www.geo-fs.com/geofs.php*
 // @match        https://beta.geo-fs.com/geofs.php*
 // @run-at       document-idle
@@ -29,7 +29,7 @@
   function init() {
     console.log('%c[Missile Addon v9.5] Ready.', 'color:lime;font-family:monospace');
 
-    const BASE = 'https://raw.githubusercontent.com/mxwl-mesh-glb/REALADDONMODELS/main/';
+    const BASE = 'https://raw.githubusercontent.com/mxwl-mesh-glb/MXWL-ASSETS/main/';
 
     function lodUrls(name) {
       return [
@@ -176,7 +176,7 @@
 
     function createPylonPrimitive(callback) {
       Cesium.Model.fromGltfAsync({
-        url: 'https://raw.githubusercontent.com/mxwl-mesh-glb/REALADDONMODELS/main/hardpoints.glb',
+        url: 'https://raw.githubusercontent.com/mxwl-mesh-glb/MXWL-ASSETS/main/hardpoints.glb',
         minimumPixelSize: 32,
         maximumScale: 500,
         modelMatrix: Cesium.Matrix4.IDENTITY.clone(),
