@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         GeoFS Military Addon for 3.9
+// @name         GeoFS-MXWL-Military for 3.9
 // @namespace    https://geo-fs.com/
 // @version      0.0.3
 // @description  Military addon for GeoFS 3.9
