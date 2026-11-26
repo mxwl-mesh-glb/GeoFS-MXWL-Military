@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         GeoFS Military Addon for 4.0
+// @name         GeoFS-MXWL-Military for 4.0
 // @namespace    https://geo-fs.com/
 // @version      0.0.3
 // @description  Military addon. for better GeoFS military.....stuff
