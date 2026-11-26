@@ -3,7 +3,7 @@
 // @namespace    https://geo-fs.com/
 // @version      0.0.3
 // @description  Military addon for GeoFS 3.9
-// @author       Maxwell_The_Cat (aka: mxwl-mesh.glb, MaxwellTheCat)
+// @author       mxwl-mesh (MaxwellTheCat, mxwl-mesh-glb(or mxwl-mesh.glb)
 // @match        https://www.geo-fs.com/geofs.php*
 // @match        https://beta.geo-fs.com/geofs.php*
 // @run-at       document-idle
@@ -94,7 +94,7 @@
       } catch(e) { callback(null); }
     }
 
-    const BASE = 'https://raw.githubusercontent.com/mxwl-mesh-glb/REALADDONMODELS/main/';
+    const BASE = 'https://raw.githubusercontent.com/mxwl-mesh-glb/MXWL-ASSETS/main/';
 
     function lodUrls(name) {
       return [
